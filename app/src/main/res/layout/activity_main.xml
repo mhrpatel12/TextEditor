@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="mainViewModel"
+            type="com.texteditor.viewmodel.MainActivityViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/screen_margin"
+        tools:context=".ui.MainActivity">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/txtEditor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtCounter"
+            android:minLines="4"
+            android:text="@={mainViewModel.getEditor()}" />
+
+        <TextView
+            android:id="@+id/txtCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/screen_margin"
+            android:text="@{mainViewModel.getWords()}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_large" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUndo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCounter"
+            android:layout_centerHorizontal="true"
+            android:drawableStart="@drawable/ic_undo_black_24dp"
+            android:drawablePadding="@dimen/screen_margin_half"
+            android:enabled="@{mainViewModel.getUndoAvailable()}"
+            android:text="@string/undo" />
+
+    </RelativeLayout>
+
+</layout>
